@@ -1,0 +1,23 @@
+import java.util.HashMap;
+class HelloWorld {
+    public static int lengthOfLongestSubstring(String s) {
+	HashMap<Character, Boolean> map = new HashMap<>();
+	for (char c : s.toCharArray())
+		map.put(c,false);
+	int left = 0, right = 0;
+	int maxLen = 0;
+	while (right < s.length() && left < s.length()){
+				if (map.get(s.charAt(right)))
+			map.put(s.charAt(left++),false);
+		else {
+			map.put(s.charAt(right),true);
+			maxLen = Math.max(maxLen,right-left+1);
+			right++;
+		}
+	}
+	return maxLen;
+}
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+    }
+}
